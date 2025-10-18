@@ -1,0 +1,98 @@
+//
+//  CharactersListView.swift
+//  RickAndMorty
+//
+//  Created by Bob Witmer on 2025-10-17.
+//
+
+import SwiftUI
+
+struct CharactersListView: View {
+    @Environment(\.dismiss) var dismiss
+    @StateObject var characterVM: CharacterVM = CharacterVM()
+    @State private var searchText: String = ""
+    
+    var body: some View {
+
+        
+            NavigationStack {
+                ZStack {
+                    List(searchResults) { character in
+                        VStack {
+                            
+                            NavigationLink {
+                                //                                DetailView(person: person)
+                            } label: {
+                                Text(character.name)
+                                    .font(.title2)
+                            }
+                            
+                            Spacer()
+                        }
+                        //                    .task {   // Allows lazy loading of the next page during scrolling, but doesn't function well with this API
+                        //                        await personsVM.getNextPage()
+                        //                    }
+                    }
+                    .listStyle(.automatic)
+                    .navigationTitle(Text("Characters:"))
+                    .toolbar {
+                        ToolbarItem(placement: .status) {
+                            Text("Titles: \(searchResults.count) of \(characterVM.count)")
+                        }
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Text("Cancel")
+                            }
+
+                        }
+                        ToolbarItem(placement: .bottomBar) {
+                            Button("Load All") {
+                                Task {
+//                                    characterVM.getData()
+                                }
+                            }
+                            
+                        }
+                        ToolbarItem(placement: .bottomBar) {
+                            Button("Next Page") {
+                                Task {
+//                                    await characterVM.getNextPage()
+                                }
+                            }
+                        }
+                    }
+                    .searchable(text: $searchText)
+                    
+                    if characterVM.isLoading {
+                        ProgressView()
+                            .tint(.red)
+                            .scaleEffect(4.0)
+                    }
+                }
+                .onAppear {
+                    characterVM.getData()
+                    print("Data Loaded --> Count: \(characterVM.count)")
+                }
+            }
+            .padding()
+
+            
+            
+            var searchResults: [Character] {
+                if searchText.isEmpty {
+                    return characterVM.characters
+                } else {    // There is searchText data
+                    return characterVM.characters.filter {
+                        $0.name.lowercased().contains(searchText.lowercased())
+                    }
+                }
+            }
+        }
+    
+}
+
+#Preview {
+    CharactersListView()
+}
