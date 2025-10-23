@@ -1,15 +1,15 @@
 //
-//  CharactersListView.swift
+//  LocationsListView.swift
 //  RickAndMorty
 //
-//  Created by Bob Witmer on 2025-10-17.
+//  Created by Bob Witmer on 2025-10-23.
 //
 
 import SwiftUI
 
-struct CharactersListView: View {
+struct LocationsListView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var characterVM: CharacterVM = CharacterVM()
+    @StateObject var locationVM: LocationVM = LocationVM()
     @State private var searchText: String = ""
     
     var body: some View {
@@ -17,13 +17,13 @@ struct CharactersListView: View {
         
             NavigationStack {
                 ZStack {
-                    List(searchResults) { character in
+                    List(searchResults) { location in
                         VStack {
                             
                             NavigationLink {
                                 //                                DetailView(person: person)
                             } label: {
-                                Text(character.name)
+                                Text(location.name)
                                     .font(.title2)
                             }
                             
@@ -34,10 +34,10 @@ struct CharactersListView: View {
                         //                    }
                     }
                     .listStyle(.automatic)
-                    .navigationTitle(Text("Characters:"))
+                    .navigationTitle(Text("Locations:"))
                     .toolbar {
                         ToolbarItem(placement: .status) {
-                            Text("Titles: \(searchResults.count) of \(characterVM.count)")
+                            Text("Titles: \(searchResults.count) of \(locationVM.count)")
                         }
                         ToolbarItem(placement: .cancellationAction) {
                             Button {
@@ -50,7 +50,7 @@ struct CharactersListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Load All") {
                                 Task {
-                                    await characterVM.loadAll()
+                                    await locationVM.loadAll()
                                 }
                             }
                             
@@ -58,33 +58,33 @@ struct CharactersListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Next Page") {
                                 Task {
-//                                    await characterVM.getNextPage()
+//                                    await locationVM.getNextPage()
                                 }
                             }
                         }
                     }
                     .searchable(text: $searchText)
                     
-                    if characterVM.isLoading {
+                    if locationVM.isLoading {
                         ProgressView()
                             .tint(.red)
                             .scaleEffect(4.0)
                     }
                 }
                 .onAppear {
-                    characterVM.getData()
-                    print("Data Loaded --> Count: \(characterVM.count)")
+                    locationVM.getData()
+                    print("Data Loaded --> Count: \(locationVM.count)")
                 }
             }
             .padding()
 
             
             
-            var searchResults: [Character] {
+            var searchResults: [Location] {
                 if searchText.isEmpty {
-                    return characterVM.characters
+                    return locationVM.locations
                 } else {    // There is searchText data
-                    return characterVM.characters.filter {
+                    return locationVM.locations.filter {
                         $0.name.lowercased().contains(searchText.lowercased())
                     }
                 }
@@ -94,5 +94,5 @@ struct CharactersListView: View {
 }
 
 #Preview {
-    CharactersListView()
+    LocationsListView()
 }

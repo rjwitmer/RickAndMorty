@@ -10,17 +10,17 @@ import Foundation
 struct Character: Codable, Identifiable {
     var id: Int = 0
     var name: String = ""
-//    var status: String = ""
-//    var species: String = ""
-//    var type: String = ""
-//    var gender: String = ""
-//    var origin: Origin = Origin(name: "")
-//    var location: Location = Location(name: "")
-//    var imageURL: String = ""
+    var status: String = ""
+    var species: String = ""
+    var type: String = ""
+    var gender: String = ""
+    var origin: Origin = Origin(name: "")
+    var location: CharacterLocation = CharacterLocation(name: "")
+    var url: String = ""
 
 }
 
-struct Location: Codable {
+struct CharacterLocation: Codable {
     let name: String
 }
 

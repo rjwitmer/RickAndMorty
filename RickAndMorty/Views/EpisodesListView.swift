@@ -1,15 +1,15 @@
 //
-//  CharactersListView.swift
+//  EpisodesListView.swift
 //  RickAndMorty
 //
-//  Created by Bob Witmer on 2025-10-17.
+//  Created by Bob Witmer on 2025-10-23.
 //
 
 import SwiftUI
 
-struct CharactersListView: View {
+struct EpisodesListView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var characterVM: CharacterVM = CharacterVM()
+    @StateObject var episodeVM: EpisodeVM = EpisodeVM()
     @State private var searchText: String = ""
     
     var body: some View {
@@ -17,13 +17,13 @@ struct CharactersListView: View {
         
             NavigationStack {
                 ZStack {
-                    List(searchResults) { character in
+                    List(searchResults) { episode in
                         VStack {
                             
                             NavigationLink {
                                 //                                DetailView(person: person)
                             } label: {
-                                Text(character.name)
+                                Text(episode.name)
                                     .font(.title2)
                             }
                             
@@ -34,10 +34,10 @@ struct CharactersListView: View {
                         //                    }
                     }
                     .listStyle(.automatic)
-                    .navigationTitle(Text("Characters:"))
+                    .navigationTitle(Text("Episodes:"))
                     .toolbar {
                         ToolbarItem(placement: .status) {
-                            Text("Titles: \(searchResults.count) of \(characterVM.count)")
+                            Text("Titles: \(searchResults.count) of \(episodeVM.count)")
                         }
                         ToolbarItem(placement: .cancellationAction) {
                             Button {
@@ -50,7 +50,7 @@ struct CharactersListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Load All") {
                                 Task {
-                                    await characterVM.loadAll()
+                                    await episodeVM.loadAll()
                                 }
                             }
                             
@@ -58,33 +58,33 @@ struct CharactersListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Next Page") {
                                 Task {
-//                                    await characterVM.getNextPage()
+//                                    await episodeVM.getNextPage()
                                 }
                             }
                         }
                     }
                     .searchable(text: $searchText)
                     
-                    if characterVM.isLoading {
+                    if episodeVM.isLoading {
                         ProgressView()
                             .tint(.red)
                             .scaleEffect(4.0)
                     }
                 }
                 .onAppear {
-                    characterVM.getData()
-                    print("Data Loaded --> Count: \(characterVM.count)")
+                    episodeVM.getData()
+                    print("Data Loaded --> Count: \(episodeVM.count)")
                 }
             }
             .padding()
 
             
             
-            var searchResults: [Character] {
+            var searchResults: [Episode] {
                 if searchText.isEmpty {
-                    return characterVM.characters
+                    return episodeVM.episodes
                 } else {    // There is searchText data
-                    return characterVM.characters.filter {
+                    return episodeVM.episodes.filter {
                         $0.name.lowercased().contains(searchText.lowercased())
                     }
                 }
@@ -94,5 +94,5 @@ struct CharactersListView: View {
 }
 
 #Preview {
-    CharactersListView()
+    EpisodesListView()
 }

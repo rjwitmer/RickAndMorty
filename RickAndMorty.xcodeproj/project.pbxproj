@@ -18,6 +18,15 @@
 		CCA47E9C2EA2852B005D91D5 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47E9B2EA2852B005D91D5 /* Characters.swift */; };
 		CCA47E9E2EA28BEB005D91D5 /* CharacterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47E9D2EA28BEB005D91D5 /* CharacterVM.swift */; };
 		CCA47EA02EA2931F005D91D5 /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47E9F2EA2931F005D91D5 /* CharactersListView.swift */; };
+		CCA47EAC2EAA798D005D91D5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EAB2EAA798D005D91D5 /* Location.swift */; };
+		CCA47EAE2EAA799E005D91D5 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EAD2EAA799E005D91D5 /* Locations.swift */; };
+		CCA47EB02EAA79B5005D91D5 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EAF2EAA79B5005D91D5 /* Episode.swift */; };
+		CCA47EB22EAA79C6005D91D5 /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB12EAA79C6005D91D5 /* Episodes.swift */; };
+		CCA47EB42EAA7A6E005D91D5 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB32EAA7A6E005D91D5 /* Info.swift */; };
+		CCA47EB62EAA7E5C005D91D5 /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB52EAA7E5C005D91D5 /* LocationsListView.swift */; };
+		CCA47EB82EAA7E7B005D91D5 /* EpisodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */; };
+		CCA47EBA2EAA7EFA005D91D5 /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB92EAA7EFA005D91D5 /* LocationVM.swift */; };
+		CCA47EBC2EAA8653005D91D5 /* EpisodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EBB2EAA8653005D91D5 /* EpisodeVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,15 @@
 		CCA47E9B2EA2852B005D91D5 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		CCA47E9D2EA28BEB005D91D5 /* CharacterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterVM.swift; sourceTree = "<group>"; };
 		CCA47E9F2EA2931F005D91D5 /* CharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListView.swift; sourceTree = "<group>"; };
+		CCA47EAB2EAA798D005D91D5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		CCA47EAD2EAA799E005D91D5 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		CCA47EAF2EAA79B5005D91D5 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		CCA47EB12EAA79C6005D91D5 /* Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episodes.swift; sourceTree = "<group>"; };
+		CCA47EB32EAA7A6E005D91D5 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		CCA47EB52EAA7E5C005D91D5 /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
+		CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListView.swift; sourceTree = "<group>"; };
+		CCA47EB92EAA7EFA005D91D5 /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
+		CCA47EBB2EAA8653005D91D5 /* EpisodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +109,8 @@
 			children = (
 				CCA47E822EA1339D005D91D5 /* LaunchView.swift */,
 				CCA47E9F2EA2931F005D91D5 /* CharactersListView.swift */,
+				CCA47EB52EAA7E5C005D91D5 /* LocationsListView.swift */,
+				CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,7 +121,12 @@
 				CCA47E8C2EA13644005D91D5 /* NetworkService.swift */,
 				CCA47E902EA1374E005D91D5 /* RickMortyAPI.swift */,
 				CCA47E952EA14A4C005D91D5 /* Character.swift */,
+				CCA47EB32EAA7A6E005D91D5 /* Info.swift */,
 				CCA47E9B2EA2852B005D91D5 /* Characters.swift */,
+				CCA47EAB2EAA798D005D91D5 /* Location.swift */,
+				CCA47EAD2EAA799E005D91D5 /* Locations.swift */,
+				CCA47EAF2EAA79B5005D91D5 /* Episode.swift */,
+				CCA47EB12EAA79C6005D91D5 /* Episodes.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -111,6 +136,8 @@
 			children = (
 				CCA47E932EA13D0D005D91D5 /* RickMortyVM.swift */,
 				CCA47E9D2EA28BEB005D91D5 /* CharacterVM.swift */,
+				CCA47EB92EAA7EFA005D91D5 /* LocationVM.swift */,
+				CCA47EBB2EAA8653005D91D5 /* EpisodeVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -188,14 +215,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA47EB62EAA7E5C005D91D5 /* LocationsListView.swift in Sources */,
+				CCA47EBA2EAA7EFA005D91D5 /* LocationVM.swift in Sources */,
 				CCA47E882EA1339D005D91D5 /* LaunchView.swift in Sources */,
+				CCA47EB22EAA79C6005D91D5 /* Episodes.swift in Sources */,
+				CCA47EB02EAA79B5005D91D5 /* Episode.swift in Sources */,
+				CCA47EB82EAA7E7B005D91D5 /* EpisodesListView.swift in Sources */,
 				CCA47E942EA13D0D005D91D5 /* RickMortyVM.swift in Sources */,
+				CCA47EB42EAA7A6E005D91D5 /* Info.swift in Sources */,
+				CCA47EAC2EAA798D005D91D5 /* Location.swift in Sources */,
 				CCA47E9C2EA2852B005D91D5 /* Characters.swift in Sources */,
 				CCA47E8D2EA13644005D91D5 /* NetworkService.swift in Sources */,
 				CCA47E9E2EA28BEB005D91D5 /* CharacterVM.swift in Sources */,
+				CCA47EBC2EAA8653005D91D5 /* EpisodeVM.swift in Sources */,
 				CCA47EA02EA2931F005D91D5 /* CharactersListView.swift in Sources */,
 				CCA47E962EA14A4C005D91D5 /* Character.swift in Sources */,
 				CCA47E892EA1339D005D91D5 /* RickAndMortyApp.swift in Sources */,
+				CCA47EAE2EAA799E005D91D5 /* Locations.swift in Sources */,
 				CCA47E912EA1374E005D91D5 /* RickMortyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

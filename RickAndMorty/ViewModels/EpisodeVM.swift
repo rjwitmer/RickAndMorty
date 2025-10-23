@@ -1,15 +1,15 @@
 //
-//  CharacterVM.swift
+//  EpisodeVM.swift
 //  RickAndMorty
 //
-//  Created by Bob Witmer on 2025-10-17.
+//  Created by Bob Witmer on 2025-10-23.
 //
 
 import Foundation
 internal import Combine
 
-class CharacterVM: ObservableObject {
-    @Published var characters: [Character] = []
+class EpisodeVM: ObservableObject {
+    @Published var episodes: [Episode] = []
     @Published var count: Int = 0
     @Published var pages: Int = 0
     @Published var next: String?
@@ -23,7 +23,7 @@ class CharacterVM: ObservableObject {
         self.isLoading = true
         Task {
             do {
-                let decodedData = try await networkService.fetchCharacterData()
+                let decodedData = try await networkService.fetchEpisodeData()
                 DispatchQueue.main.async {
                     if decodedData.info.count == 0 {
                         print("😡 ERROR: No API data")
@@ -32,11 +32,11 @@ class CharacterVM: ObservableObject {
                         self.count = decodedData.info.count
                         self.pages = decodedData.info.pages
                         self.next = decodedData.info.next
-                        self.characters.append(contentsOf: decodedData.results)
+                        self.episodes.append(contentsOf: decodedData.results)
                         print("Total Characters: \(self.count)")
                         print("Total Pages: \(self.pages)")
                         print("Next Page URL: \(self.next ?? "")")
-                        print("Characters: \(self.characters.count)")
+                        print("Characters: \(self.episodes.count)")
                         self.networkService.charactersURL = self.next ?? ""
                         self.isLoading = false
                     }
@@ -51,16 +51,16 @@ class CharacterVM: ObservableObject {
             }
         }
     }
-    func loadNextPage(character: Character) async {
-        guard let lastCharacter = characters.last else { return }
-        if character.id == lastCharacter.id && networkService.charactersURL.hasPrefix("http") {
+    func loadNextPage(episode: Episode) async {
+        guard let lastEpisode = episodes.last else { return }
+        if episode.id == lastEpisode.id && networkService.episodesURL.hasPrefix("http") {
             getData()
         }
     }
     
     func loadAll() async {
         Task { @MainActor in
-            guard networkService.charactersURL.hasPrefix("http") else { return }
+            guard networkService.episodesURL.hasPrefix("http") else { return }
             
             getData()     // get nextpage of data
             await loadAll()    // Recursive call until there are no more pages to load 'next = null'

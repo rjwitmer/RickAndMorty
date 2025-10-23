@@ -13,9 +13,9 @@ class NetworkService {
     private let queue: DispatchQueue = DispatchQueue(label: "NetworkMonitor")
     private var isConnected: Bool = true
     private let rickAndMortyURL: String = "https://rickandmortyapi.com/api"
-    private var charactersURL: String = "https://rickandmortyapi.com/api/character"
-    private var episodesURL: String = "https://rickandmortyapi.com/api/episode"
-    private var locationsURL: String = "https://rickandmortyapi.com/api/location"
+    var charactersURL: String = "https://rickandmortyapi.com/api/character"
+    var episodesURL: String = "https://rickandmortyapi.com/api/episode"
+    var locationsURL: String = "https://rickandmortyapi.com/api/location"
     
     init() {
         monitor.pathUpdateHandler = { path in
@@ -65,11 +65,11 @@ class NetworkService {
         return try decoder.decode(Characters.self, from: data)
     }
     
-    func fetchLocationData() async throws -> Characters {
+    func fetchLocationData() async throws -> Locations {
         guard isConnected else {
             throw NetworkError.noInternetConnection
         }
-        let url = URL(string: charactersURL)!
+        let url = URL(string: locationsURL)!
         print("URL: \(url)")
 
         
@@ -82,14 +82,14 @@ class NetworkService {
         print("HTTP Status: \(httpResponse.statusCode)")
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(Characters.self, from: data)
+        return try decoder.decode(Locations.self, from: data)
     }
     
-    func fetchEpisodeData() async throws -> Characters {
+    func fetchEpisodeData() async throws -> Episodes {
         guard isConnected else {
             throw NetworkError.noInternetConnection
         }
-        let url = URL(string: charactersURL)!
+        let url = URL(string: episodesURL)!
         print("URL: \(url)")
 
         
@@ -102,7 +102,7 @@ class NetworkService {
         print("HTTP Status: \(httpResponse.statusCode)")
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(Characters.self, from: data)
+        return try decoder.decode(Episodes.self, from: data)
     }
 }
 

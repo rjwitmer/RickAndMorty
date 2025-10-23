@@ -12,6 +12,8 @@ import RealityKitContent
 struct LaunchView: View {
     @State var rickmortyVM: RickMortyVM = RickMortyVM()
     @State var characterListPresented: Bool = false
+    @State var locationListPresented: Bool = false
+    @State var episodeListPresented: Bool = false
     var body: some View {
         ZStack {
             
@@ -28,42 +30,37 @@ struct LaunchView: View {
                     } label: {
                         Text("Character List")
                     }
-
+                    Button {
+                        episodeListPresented.toggle()
+                    } label: {
+                        Text("Episode List")
+                    }
+                    Button {
+                        locationListPresented.toggle()
+                    } label: {
+                        Text("Location List")
+                    }
                 }
-                .padding()
-//                NavigationStack {
-//                    Text("Selection:")
-//                    NavigationLink {
-//                        NavigationStack(root: {
-//                            CharactersListView()
-//                        })
-//                    } label: {
-//                        Text("Character List")
-//                    }
-//                    NavigationLink {
-//                        //TODO: Add View
-//                    } label: {
-//                        Text("Location List")
-//                    }
-//                    NavigationLink {
-//                        //TODO: Add View
-//                    } label: {
-//                        Text("Episode List")
-//                    }
-//
-//                }
-//                .frame(width: 250, height: 250)
-//                .padding()
-                
+                .padding()              
 
                 }
             
         }
-        .fullScreenCover(isPresented: $characterListPresented, content: {
+        .fullScreenCover(isPresented: $characterListPresented) {
             NavigationStack {
                 CharactersListView()
             }
-        })
+        }
+        .fullScreenCover(isPresented: $episodeListPresented) {
+            NavigationStack {
+                EpisodesListView()
+            }
+        }
+        .fullScreenCover(isPresented: $locationListPresented) {
+            NavigationStack {
+                LocationsListView()
+            }
+        }
         .onAppear {
             rickmortyVM.getData()
 

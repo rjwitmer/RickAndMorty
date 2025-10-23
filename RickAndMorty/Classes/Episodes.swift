@@ -1,21 +1,19 @@
 //
-//  Characters.swift
+//  Episodes.swift
 //  RickAndMorty
 //
-//  Created by Bob Witmer on 2025-10-17.
+//  Created by Bob Witmer on 2025-10-23.
 //
 
 import Foundation
 
-struct Characters: Codable, Identifiable {
+struct Episodes: Codable, Identifiable {
     let id: String = UUID().uuidString
     var info: Info = Info(count: 0, pages: 0, next: "")
-    var results: [Character] = []
+    var results: [Episode] = []
     
     enum CodingKeys: CodingKey {
         case info
         case results
     }
 }
-
-
