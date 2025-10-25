@@ -13,9 +13,7 @@ class NetworkService {
     private let queue: DispatchQueue = DispatchQueue(label: "NetworkMonitor")
     private var isConnected: Bool = true
     private let rickAndMortyURL: String = "https://rickandmortyapi.com/api"
-    var charactersURL: String = "https://rickandmortyapi.com/api/character"
-    var episodesURL: String = "https://rickandmortyapi.com/api/episode"
-    var locationsURL: String = "https://rickandmortyapi.com/api/location"
+
     
     init() {
         monitor.pathUpdateHandler = { path in
@@ -44,11 +42,11 @@ class NetworkService {
         return try decoder.decode(RickMortyAPI.self, from: data)
     }
     
-    func fetchCharacterData() async throws -> Characters {
+    func fetchCharacterData(dataURL: String) async throws -> Characters {
         guard isConnected else {
             throw NetworkError.noInternetConnection
         }
-        let url = URL(string: charactersURL)!
+        let url = URL(string: dataURL)!
         print("URL: \(url)")
 
         
@@ -65,11 +63,11 @@ class NetworkService {
         return try decoder.decode(Characters.self, from: data)
     }
     
-    func fetchLocationData() async throws -> Locations {
+    func fetchLocationData(dataURL: String) async throws -> Locations {
         guard isConnected else {
             throw NetworkError.noInternetConnection
         }
-        let url = URL(string: locationsURL)!
+        let url = URL(string: dataURL)!
         print("URL: \(url)")
 
         
@@ -85,11 +83,11 @@ class NetworkService {
         return try decoder.decode(Locations.self, from: data)
     }
     
-    func fetchEpisodeData() async throws -> Episodes {
+    func fetchEpisodeData(dataURL: String) async throws -> Episodes {
         guard isConnected else {
             throw NetworkError.noInternetConnection
         }
-        let url = URL(string: episodesURL)!
+        let url = URL(string: dataURL)!
         print("URL: \(url)")
 
         

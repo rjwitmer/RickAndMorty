@@ -9,18 +9,18 @@ import SwiftUI
 
 struct LocationsListView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var locationVM: LocationVM = LocationVM()
+    @State var locationVM: LocationVM = LocationVM()
     @State private var searchText: String = ""
     
     var body: some View {
 
-        
             NavigationStack {
                 ZStack {
                     List(searchResults) { location in
                         VStack {
                             
                             NavigationLink {
+                                LocationDetailView(location: location)
                                 //                                DetailView(person: person)
                             } label: {
                                 Text(location.name)
@@ -58,7 +58,7 @@ struct LocationsListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Next Page") {
                                 Task {
-//                                    await locationVM.getNextPage()
+                                    await locationVM.loadNextPage()
                                 }
                             }
                         }
@@ -71,7 +71,7 @@ struct LocationsListView: View {
                             .scaleEffect(4.0)
                     }
                 }
-                .onAppear {
+                .task {
                     locationVM.getData()
                     print("Data Loaded --> Count: \(locationVM.count)")
                 }

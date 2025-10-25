@@ -16,7 +16,8 @@ struct Character: Codable, Identifiable {
     var gender: String = ""
     var origin: Origin = Origin(name: "")
     var location: CharacterLocation = CharacterLocation(name: "")
-    var url: String = ""
+    var image: String = ""
+    var episode: [String] = []
 
 }
 

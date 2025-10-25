@@ -6,24 +6,24 @@
 //
 
 import Foundation
-internal import Combine
 
-class LocationVM: ObservableObject {
-    @Published var locations: [Location] = []
-    @Published var count: Int = 0
-    @Published var pages: Int = 0
-    @Published var next: String?
-    @Published var errorMessage: String?
-    @Published var morePages: Bool = true
+@Observable class LocationVM {
+    var locations: [Location] = []
+    var count: Int = 0
+    var pages: Int = 0
+    var next: String?
+    var errorMessage: String?
 
-    var networkService: NetworkService = NetworkService()
+    private var networkService: NetworkService = NetworkService()
     var isLoading: Bool = false
+    var dataURL: String = "https://rickandmortyapi.com/api/location"
     
     func getData() {
+        guard dataURL.hasPrefix("http") else { return }
         self.isLoading = true
         Task {
             do {
-                let decodedData = try await networkService.fetchLocationData()
+                let decodedData = try await networkService.fetchLocationData(dataURL: dataURL)
                 DispatchQueue.main.async {
                     if decodedData.info.count == 0 {
                         print("😡 ERROR: No API data")
@@ -33,11 +33,11 @@ class LocationVM: ObservableObject {
                         self.pages = decodedData.info.pages
                         self.next = decodedData.info.next
                         self.locations.append(contentsOf: decodedData.results)
-                        print("Total Characters: \(self.count)")
+                        print("Total Locations: \(self.count)")
                         print("Total Pages: \(self.pages)")
                         print("Next Page URL: \(self.next ?? "")")
-                        print("Characters: \(self.locations.count)")
-                        self.networkService.charactersURL = self.next ?? ""
+                        print("Locations: \(self.locations.count)")
+                        self.dataURL = self.next ?? ""
                         self.isLoading = false
                     }
 
@@ -51,19 +51,18 @@ class LocationVM: ObservableObject {
             }
         }
     }
-    func loadNextPage(location: Location) async {
-        guard let lastLocation = locations.last else { return }
-        if location.id == lastLocation.id && networkService.locationsURL.hasPrefix("http") {
-            getData()
-        }
+    func loadNextPage() async {
+        guard dataURL.hasPrefix("http") else { return }
+        getData()
     }
     
     func loadAll() async {
-        Task { @MainActor in
-            guard networkService.locationsURL.hasPrefix("http") else { return }
-            
-            getData()     // get nextpage of data
-            await loadAll()    // Recursive call until there are no more pages to load 'next = null'
+        Task {
+            try await Task.sleep(nanoseconds: 500_000_000)
+            guard dataURL.hasPrefix("http") else { return }
+//            print(dataURL)
+            getData()
+            await loadAll()
         }
         
     }

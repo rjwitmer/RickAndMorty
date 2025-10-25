@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CharactersListView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var characterVM: CharacterVM = CharacterVM()
+    @State var characterVM: CharacterVM = CharacterVM()
     @State private var searchText: String = ""
     
     var body: some View {
@@ -21,7 +21,7 @@ struct CharactersListView: View {
                         VStack {
                             
                             NavigationLink {
-                                //                                DetailView(person: person)
+                                CharacterDetailView(character: character)
                             } label: {
                                 Text(character.name)
                                     .font(.title2)
@@ -58,7 +58,7 @@ struct CharactersListView: View {
                         ToolbarItem(placement: .bottomBar) {
                             Button("Next Page") {
                                 Task {
-//                                    await characterVM.getNextPage()
+                                    await characterVM.loadNextPage()
                                 }
                             }
                         }
@@ -71,7 +71,7 @@ struct CharactersListView: View {
                             .scaleEffect(4.0)
                     }
                 }
-                .onAppear {
+                .task {
                     characterVM.getData()
                     print("Data Loaded --> Count: \(characterVM.count)")
                 }

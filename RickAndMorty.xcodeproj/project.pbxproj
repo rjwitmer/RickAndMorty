@@ -27,6 +27,9 @@
 		CCA47EB82EAA7E7B005D91D5 /* EpisodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */; };
 		CCA47EBA2EAA7EFA005D91D5 /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EB92EAA7EFA005D91D5 /* LocationVM.swift */; };
 		CCA47EBC2EAA8653005D91D5 /* EpisodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EBB2EAA8653005D91D5 /* EpisodeVM.swift */; };
+		CCA47EBE2EABBDE0005D91D5 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EBD2EABBDE0005D91D5 /* CharacterDetailView.swift */; };
+		CCA47EC02EABBDFD005D91D5 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EBF2EABBDFD005D91D5 /* LocationDetailView.swift */; };
+		CCA47EC22EABBE1A005D91D5 /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47EC12EABBE1A005D91D5 /* EpisodeDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListView.swift; sourceTree = "<group>"; };
 		CCA47EB92EAA7EFA005D91D5 /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
 		CCA47EBB2EAA8653005D91D5 /* EpisodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeVM.swift; sourceTree = "<group>"; };
+		CCA47EBD2EABBDE0005D91D5 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		CCA47EBF2EABBDFD005D91D5 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
+		CCA47EC12EABBE1A005D91D5 /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 				CCA47E9F2EA2931F005D91D5 /* CharactersListView.swift */,
 				CCA47EB52EAA7E5C005D91D5 /* LocationsListView.swift */,
 				CCA47EB72EAA7E7B005D91D5 /* EpisodesListView.swift */,
+				CCA47EBD2EABBDE0005D91D5 /* CharacterDetailView.swift */,
+				CCA47EBF2EABBDFD005D91D5 /* LocationDetailView.swift */,
+				CCA47EC12EABBE1A005D91D5 /* EpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +227,8 @@
 				CCA47EB62EAA7E5C005D91D5 /* LocationsListView.swift in Sources */,
 				CCA47EBA2EAA7EFA005D91D5 /* LocationVM.swift in Sources */,
 				CCA47E882EA1339D005D91D5 /* LaunchView.swift in Sources */,
+				CCA47EC22EABBE1A005D91D5 /* EpisodeDetailView.swift in Sources */,
+				CCA47EBE2EABBDE0005D91D5 /* CharacterDetailView.swift in Sources */,
 				CCA47EB22EAA79C6005D91D5 /* Episodes.swift in Sources */,
 				CCA47EB02EAA79B5005D91D5 /* Episode.swift in Sources */,
 				CCA47EB82EAA7E7B005D91D5 /* EpisodesListView.swift in Sources */,
@@ -232,6 +243,7 @@
 				CCA47E962EA14A4C005D91D5 /* Character.swift in Sources */,
 				CCA47E892EA1339D005D91D5 /* RickAndMortyApp.swift in Sources */,
 				CCA47EAE2EAA799E005D91D5 /* Locations.swift in Sources */,
+				CCA47EC02EABBDFD005D91D5 /* LocationDetailView.swift in Sources */,
 				CCA47E912EA1374E005D91D5 /* RickMortyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

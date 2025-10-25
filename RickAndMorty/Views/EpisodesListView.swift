@@ -21,7 +21,7 @@ struct EpisodesListView: View {
                         VStack {
                             
                             NavigationLink {
-                                //                                DetailView(person: person)
+                                EpisodeDetailView(episode: episode)
                             } label: {
                                 Text(episode.name)
                                     .font(.title2)

@@ -16,14 +16,16 @@ class EpisodeVM: ObservableObject {
     @Published var errorMessage: String?
     @Published var morePages: Bool = true
 
-    var networkService: NetworkService = NetworkService()
+    private var networkService: NetworkService = NetworkService()
     var isLoading: Bool = false
+    private var dataURL: String = "https://rickandmortyapi.com/api/episode"
     
     func getData() {
+        guard dataURL.hasPrefix("http") else { return }
         self.isLoading = true
         Task {
             do {
-                let decodedData = try await networkService.fetchEpisodeData()
+                let decodedData = try await networkService.fetchEpisodeData(dataURL: dataURL)
                 DispatchQueue.main.async {
                     if decodedData.info.count == 0 {
                         print("😡 ERROR: No API data")
@@ -37,7 +39,7 @@ class EpisodeVM: ObservableObject {
                         print("Total Pages: \(self.pages)")
                         print("Next Page URL: \(self.next ?? "")")
                         print("Characters: \(self.episodes.count)")
-                        self.networkService.charactersURL = self.next ?? ""
+                        self.dataURL = self.next ?? ""
                         self.isLoading = false
                     }
 
@@ -51,19 +53,18 @@ class EpisodeVM: ObservableObject {
             }
         }
     }
-    func loadNextPage(episode: Episode) async {
-        guard let lastEpisode = episodes.last else { return }
-        if episode.id == lastEpisode.id && networkService.episodesURL.hasPrefix("http") {
-            getData()
-        }
+    func loadNextPage() async {
+        guard dataURL.hasPrefix("http") else { return }
+        getData()
     }
     
     func loadAll() async {
-        Task { @MainActor in
-            guard networkService.episodesURL.hasPrefix("http") else { return }
-            
-            getData()     // get nextpage of data
-            await loadAll()    // Recursive call until there are no more pages to load 'next = null'
+        Task {
+            try await Task.sleep(nanoseconds: 500_000_000)
+            guard dataURL.hasPrefix("http") else { return }
+//            print(dataURL)
+            getData()
+            await loadAll()
         }
         
     }
