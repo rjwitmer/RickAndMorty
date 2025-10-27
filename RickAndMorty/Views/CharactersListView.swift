@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CharactersListView: View {
     @Environment(\.dismiss) var dismiss
-    @State var characterVM: CharacterVM = CharacterVM()
+
+    @State var characterVM: CharacterVM
     @State private var searchText: String = ""
     
     var body: some View {
-
         
             NavigationStack {
                 ZStack {
@@ -94,5 +94,6 @@ struct CharactersListView: View {
 }
 
 #Preview {
-    CharactersListView()
+    CharactersListView(characterVM: CharacterVM())
+
 }

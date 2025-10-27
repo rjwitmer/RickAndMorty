@@ -8,7 +8,6 @@
 import Foundation
 
 @Observable class CharacterVM {
-    
     var characters: [Character] = []
     var count: Int = 0
     var pages: Int = 0
@@ -16,13 +15,14 @@ import Foundation
     var errorMessage: String?
     
     private var networkService: NetworkService = NetworkService()
+    var allDataLoaded = false
     var isLoading: Bool = false
     var dataURL: String = "https://rickandmortyapi.com/api/character"
     
     func getData() {
         guard dataURL.hasPrefix("http") else { return }
         self.isLoading = true
-    
+        
         Task {
             do {
                 let decodedData = try await networkService.fetchCharacterData(dataURL: dataURL)
@@ -54,7 +54,7 @@ import Foundation
         }
     }
     func loadNextPage() async {
-//        print(dataURL)
+        //        print(dataURL)
         guard dataURL.hasPrefix("http") else { return }
         getData()
     }
@@ -62,7 +62,10 @@ import Foundation
     func loadAll() async {
         Task {
             try await Task.sleep(nanoseconds: 500_000_000)
-            guard dataURL.hasPrefix("http") else { return }
+            guard dataURL.hasPrefix("http") else {
+                allDataLoaded = true
+                return
+            }
             getData()
             await loadAll()
         }

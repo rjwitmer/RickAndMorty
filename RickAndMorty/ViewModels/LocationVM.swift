@@ -16,6 +16,7 @@ import Foundation
 
     private var networkService: NetworkService = NetworkService()
     var isLoading: Bool = false
+    var allDataLoaded = false
     var dataURL: String = "https://rickandmortyapi.com/api/location"
     
     func getData() {
@@ -59,7 +60,10 @@ import Foundation
     func loadAll() async {
         Task {
             try await Task.sleep(nanoseconds: 500_000_000)
-            guard dataURL.hasPrefix("http") else { return }
+            guard dataURL.hasPrefix("http") else {
+                allDataLoaded = true
+                return
+            }
 //            print(dataURL)
             getData()
             await loadAll()

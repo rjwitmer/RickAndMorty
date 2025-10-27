@@ -6,18 +6,18 @@
 //
 
 import Foundation
-internal import Combine
 
-class EpisodeVM: ObservableObject {
-    @Published var episodes: [Episode] = []
-    @Published var count: Int = 0
-    @Published var pages: Int = 0
-    @Published var next: String?
-    @Published var errorMessage: String?
-    @Published var morePages: Bool = true
-
+@Observable class EpisodeVM {
+    var episodes: [Episode] = []
+    var count: Int = 0
+    var pages: Int = 0
+    var next: String?
+    var errorMessage: String?
+    var morePages: Bool = true
+    
     private var networkService: NetworkService = NetworkService()
     var isLoading: Bool = false
+    var allDataLoaded = false
     private var dataURL: String = "https://rickandmortyapi.com/api/episode"
     
     func getData() {
@@ -42,7 +42,7 @@ class EpisodeVM: ObservableObject {
                         self.dataURL = self.next ?? ""
                         self.isLoading = false
                     }
-
+                    
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -61,8 +61,11 @@ class EpisodeVM: ObservableObject {
     func loadAll() async {
         Task {
             try await Task.sleep(nanoseconds: 500_000_000)
-            guard dataURL.hasPrefix("http") else { return }
-//            print(dataURL)
+            guard dataURL.hasPrefix("http") else {
+                allDataLoaded = true
+                return
+            }
+            //            print(dataURL)
             getData()
             await loadAll()
         }

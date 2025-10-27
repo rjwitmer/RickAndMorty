@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationsListView: View {
     @Environment(\.dismiss) var dismiss
-    @State var locationVM: LocationVM = LocationVM()
+    @State var locationVM: LocationVM
     @State private var searchText: String = ""
     
     var body: some View {
@@ -94,5 +94,5 @@ struct LocationsListView: View {
 }
 
 #Preview {
-    LocationsListView()
+    LocationsListView(locationVM: LocationVM())
 }

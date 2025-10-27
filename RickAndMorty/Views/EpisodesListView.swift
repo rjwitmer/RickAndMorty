@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EpisodesListView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var episodeVM: EpisodeVM = EpisodeVM()
+    @State var episodeVM: EpisodeVM
     @State private var searchText: String = ""
     
     var body: some View {
@@ -94,5 +94,5 @@ struct EpisodesListView: View {
 }
 
 #Preview {
-    EpisodesListView()
+    EpisodesListView(episodeVM: EpisodeVM())
 }
