@@ -1,5 +1,5 @@
 //
-//  Character.swift
+//  RMCharacter.swift
 //  RickAndMorty
 //
 //  Created by Bob Witmer on 2025-10-16.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Codable, Identifiable {
+struct RMCharacter: Codable, Identifiable {
     var id: Int = 0
     var name: String = ""
     var status: String = ""
@@ -28,3 +28,5 @@ struct CharacterLocation: Codable {
 struct Origin: Codable {
     let name: String
 }
+
+

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct EpisodesListView: View {
     @Environment(\.dismiss) var dismiss
-    @State var episodeVM: EpisodeVM
+    @Environment(EpisodeVM.self) var episodeVM
+//    @State var episodeVM: EpisodeVM
     @State private var searchText: String = ""
     
     var body: some View {
@@ -47,21 +48,21 @@ struct EpisodesListView: View {
                             }
 
                         }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Load All") {
-                                Task {
-                                    await episodeVM.loadAll()
-                                }
-                            }
-                            
-                        }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Next Page") {
-                                Task {
-//                                    await episodeVM.getNextPage()
-                                }
-                            }
-                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Load All") {
+//                                Task {
+//                                    await episodeVM.loadAll()
+//                                }
+//                            }
+//                            
+//                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Next Page") {
+//                                Task {
+//                                    await episodeVM.loadNextPage()
+//                                }
+//                            }
+//                        }
                     }
                     .searchable(text: $searchText)
                     
@@ -93,6 +94,7 @@ struct EpisodesListView: View {
     
 }
 
-#Preview {
-    EpisodesListView(episodeVM: EpisodeVM())
-}
+// Disable Preview is intentional
+//#Preview {
+//    EpisodesListView(episodeVM: EpisodeVM())
+//}

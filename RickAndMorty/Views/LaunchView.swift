@@ -72,31 +72,41 @@ struct LaunchView: View {
         }
         .fullScreenCover(isPresented: $characterListPresented) {
             NavigationStack {
-                CharactersListView(characterVM: characterVM)
+                CharactersListView()
+                    .environment(characterVM)
+                    .environment(episodeVM)
             }
         }
         .fullScreenCover(isPresented: $episodeListPresented) {
             NavigationStack {
-                EpisodesListView(episodeVM: episodeVM)
+                EpisodesListView()
+                    .environment(episodeVM)
             }
         }
         .fullScreenCover(isPresented: $locationListPresented) {
             NavigationStack {
-                LocationsListView(locationVM: locationVM)
+                LocationsListView()
+                    .environment(locationVM)
             }
 
         }
         .onAppear {
             rickmortyVM.getData()
             Task {
-                await characterVM.loadAll()
+                characterVM.getData()
+                characterVM.allDataLoaded = true    // Tempory load of one page of data to not overload the API
+//                await characterVM.loadAll()
                 
             }
             Task {
-                await episodeVM.loadAll()
+                episodeVM.getData()
+                episodeVM.allDataLoaded = true
+//                await episodeVM.loadAll()
             }
             Task {
-                await locationVM.loadAll()
+                locationVM.getData()
+                locationVM.allDataLoaded = true
+//                await locationVM.loadAll()
             }
         }
         .padding()

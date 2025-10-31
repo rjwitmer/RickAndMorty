@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LocationsListView: View {
     @Environment(\.dismiss) var dismiss
-    @State var locationVM: LocationVM
+    @Environment(LocationVM.self) var locationVM
+//    @State var locationVM: LocationVM
     @State private var searchText: String = ""
     
     var body: some View {
@@ -47,21 +48,21 @@ struct LocationsListView: View {
                             }
 
                         }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Load All") {
-                                Task {
-                                    await locationVM.loadAll()
-                                }
-                            }
-                            
-                        }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Next Page") {
-                                Task {
-                                    await locationVM.loadNextPage()
-                                }
-                            }
-                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Load All") {
+//                                Task {
+//                                    await locationVM.loadAll()
+//                                }
+//                            }
+//                            
+//                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Next Page") {
+//                                Task {
+//                                    await locationVM.loadNextPage()
+//                                }
+//                            }
+//                        }
                     }
                     .searchable(text: $searchText)
                     
@@ -93,6 +94,7 @@ struct LocationsListView: View {
     
 }
 
-#Preview {
-    LocationsListView(locationVM: LocationVM())
-}
+// Disabled Preview because locationVM is in Environment
+//#Preview {
+//    LocationsListView()
+//}

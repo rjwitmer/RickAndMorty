@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CharactersListView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(CharacterVM.self) var characterVM
+    @Environment(EpisodeVM.self) var episodeVM
 
-    @State var characterVM: CharacterVM
+//    @State var characterVM: CharacterVM
     @State private var searchText: String = ""
     
     var body: some View {
@@ -22,6 +24,7 @@ struct CharactersListView: View {
                             
                             NavigationLink {
                                 CharacterDetailView(character: character)
+                                    .environment(episodeVM)
                             } label: {
                                 Text(character.name)
                                     .font(.title2)
@@ -47,21 +50,21 @@ struct CharactersListView: View {
                             }
 
                         }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Load All") {
-                                Task {
-                                    await characterVM.loadAll()
-                                }
-                            }
-                            
-                        }
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Next Page") {
-                                Task {
-                                    await characterVM.loadNextPage()
-                                }
-                            }
-                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Load All") {
+//                                Task {
+//                                    await characterVM.loadAll()
+//                                }
+//                            }
+//                            
+//                        }
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button("Next Page") {
+//                                Task {
+//                                    await characterVM.loadNextPage()
+//                                }
+//                            }
+//                        }
                     }
                     .searchable(text: $searchText)
                     
@@ -71,16 +74,16 @@ struct CharactersListView: View {
                             .scaleEffect(4.0)
                     }
                 }
-                .task {
-                    characterVM.getData()
-                    print("Data Loaded --> Count: \(characterVM.count)")
-                }
+//                .task {
+//                    characterVM.getData()
+//                    print("Data Loaded --> Count: \(characterVM.count)")
+//                }
             }
             .padding()
 
             
             
-            var searchResults: [Character] {
+            var searchResults: [RMCharacter] {
                 if searchText.isEmpty {
                     return characterVM.characters
                 } else {    // There is searchText data
@@ -93,7 +96,7 @@ struct CharactersListView: View {
     
 }
 
-#Preview {
-    CharactersListView(characterVM: CharacterVM())
-
-}
+// Disable the preview because data is passed from LaunchView
+//#Preview {
+//    CharactersListView()
+//}

@@ -8,6 +8,7 @@
 import Foundation
 import Network
 
+@Observable
 class NetworkService {
     private let monitor: NWPathMonitor = NWPathMonitor()
     private let queue: DispatchQueue = DispatchQueue(label: "NetworkMonitor")

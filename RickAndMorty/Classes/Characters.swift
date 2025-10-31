@@ -10,7 +10,7 @@ import Foundation
 struct Characters: Codable, Identifiable {
     let id: String = UUID().uuidString
     var info: Info = Info(count: 0, pages: 0, next: "")
-    var results: [Character] = []
+    var results: [RMCharacter] = []
     
     enum CodingKeys: CodingKey {
         case info

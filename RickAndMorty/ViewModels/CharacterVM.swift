@@ -7,8 +7,9 @@
 
 import Foundation
 
-@Observable class CharacterVM {
-    var characters: [Character] = []
+@Observable
+class CharacterVM {
+    var characters: [RMCharacter] = []
     var count: Int = 0
     var pages: Int = 0
     var next: String?
@@ -71,3 +72,4 @@ import Foundation
         }
     }
 }
+
