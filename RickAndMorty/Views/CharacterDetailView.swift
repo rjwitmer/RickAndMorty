@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CharacterDetailView: View {
+
         @Environment(EpisodeVM.self) var episodeVM
     // Create a temporary episodes array for testing
 //    var episodes: [Episode] = [Episode(id: 1, name: "Episode 1", air_date: "Air Date", episode: "https://rickandmortyapi.com/api/episode/1", characters: ["1", "2"], url: "url"),
@@ -145,7 +146,7 @@ extension CharacterDetailView {
             }
         }
         .frame(width: 300, height: 300)
-        .padding(.trailing)
+//        .padding(.trailing)
         
     }
 
@@ -174,17 +175,17 @@ extension CharacterDetailView {
     }
 }
 
-#Preview {
-    CharacterDetailView(character: RMCharacter(id: 5000,
-                                               name: "Joe Blow",
-                                               status: "Alive",
-                                               species: "Human",
-                                               type: "",
-                                               gender: "Male",
-                                               origin: Origin(name: "Earth"),
-                                               location: CharacterLocation(name: "Toronto"),
-                                               image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-                                               episode: ["https://rickandmortyapi.com/api/episode/1", "https://rickandmortyapi.com/api/episode/6"]
-                                              )
-    )
-}
+//#Preview {
+//    CharacterDetailView(character: RMCharacter(id: 5000,
+//                                               name: "Joe Blow",
+//                                               status: "Alive",
+//                                               species: "Human",
+//                                               type: "",
+//                                               gender: "Male",
+//                                               origin: Origin(name: "Earth"),
+//                                               location: CharacterLocation(name: "Toronto"),
+//                                               image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+//                                               episode: ["https://rickandmortyapi.com/api/episode/1", "https://rickandmortyapi.com/api/episode/6"]
+//                                              )
+//    )
+//}

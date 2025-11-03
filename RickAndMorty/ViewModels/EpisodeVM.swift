@@ -35,10 +35,10 @@ import Foundation
                         self.pages = decodedData.info.pages
                         self.next = decodedData.info.next
                         self.episodes.append(contentsOf: decodedData.results)
-                        print("Total Characters: \(self.count)")
+                        print("Total Episodes: \(self.count)")
                         print("Total Pages: \(self.pages)")
                         print("Next Page URL: \(self.next ?? "")")
-                        print("Characters: \(self.episodes.count)")
+                        print("Episodes: \(self.episodes.count)")
                         self.dataURL = self.next ?? ""
                         self.isLoading = false
                     }

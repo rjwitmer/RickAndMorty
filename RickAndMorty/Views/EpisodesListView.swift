@@ -10,6 +10,7 @@ import SwiftUI
 struct EpisodesListView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(EpisodeVM.self) var episodeVM
+    @Environment(CharacterVM.self) var characterVM
 //    @State var episodeVM: EpisodeVM
     @State private var searchText: String = ""
     
@@ -23,6 +24,7 @@ struct EpisodesListView: View {
                             
                             NavigationLink {
                                 EpisodeDetailView(episode: episode)
+                                    .environment(characterVM)
                             } label: {
                                 Text(episode.name)
                                     .font(.title2)

@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationsListView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(LocationVM.self) var locationVM
+    @Environment(CharacterVM.self) var characterVM
 //    @State var locationVM: LocationVM
     @State private var searchText: String = ""
     
@@ -22,6 +23,7 @@ struct LocationsListView: View {
                             
                             NavigationLink {
                                 LocationDetailView(location: location)
+                                    .environment(characterVM)
                                 //                                DetailView(person: person)
                             } label: {
                                 Text(location.name)

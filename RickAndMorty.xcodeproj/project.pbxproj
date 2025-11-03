@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC99801F2EB8F9A400BEC583 /* EpisodeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC99801E2EB8F9A400BEC583 /* EpisodeList.swift */; };
 		CCA47E732EA13378005D91D5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CCA47E722EA13378005D91D5 /* RealityKitContent */; };
 		CCA47E862EA1339D005D91D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCA47E812EA1339D005D91D5 /* Assets.xcassets */; };
 		CCA47E882EA1339D005D91D5 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA47E822EA1339D005D91D5 /* LaunchView.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC99801E2EB8F9A400BEC583 /* EpisodeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeList.swift; sourceTree = "<group>"; };
 		CCA47E6D2EA13378005D91D5 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCA47E712EA13378005D91D5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CCA47E812EA1339D005D91D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				CCA47EAD2EAA799E005D91D5 /* Locations.swift */,
 				CCA47EAF2EAA79B5005D91D5 /* Episode.swift */,
 				CCA47EB12EAA79C6005D91D5 /* Episodes.swift */,
+				CC99801E2EB8F9A400BEC583 /* EpisodeList.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				CCA47EAE2EAA799E005D91D5 /* Locations.swift in Sources */,
 				CCA47EC02EABBDFD005D91D5 /* LocationDetailView.swift in Sources */,
 				CCA47E912EA1374E005D91D5 /* RickMortyAPI.swift in Sources */,
+				CC99801F2EB8F9A400BEC583 /* EpisodeList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
