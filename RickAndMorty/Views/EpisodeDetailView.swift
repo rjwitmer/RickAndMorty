@@ -27,53 +27,55 @@ struct EpisodeDetailView: View {
                         .bold()
                     Text(episode.episode)
                 }
-                GridRow(alignment: .firstTextBaseline) {
-                    Text("Characters:")
-                        .bold()
-                    Text("\(episode.characters.count)")
-                }
+//                GridRow(alignment: .firstTextBaseline) {
+//                    Text("Characters:")
+//                        .bold()
+//                    Text("\(episode.characters.count)")
+//                }
             }
             .font(.title2)
             .frame(width: 500)
-        Spacer()
-            VStack {
 
-                Grid(horizontalSpacing: 30, verticalSpacing: 30) {
-                    GridRow(alignment: .firstTextBaseline) {
+            ScrollView {
+                LazyVGrid(
+                    columns: [
+//                        GridItem(.fixed(600)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity))
+                    ],
+                    alignment: .leading,
+                    spacing: 10
+                ) {
+                    // Column Headers
+                    Group {
                         Text("Character:")
-                            .bold()
-                            .gridCellColumns(3)
                         Text("Gender:")
-                            .bold()
+                        Text("Species:")
+                        Text("Type:")
                         Text("Status:")
-                            .bold()
+                        Text("Location:")
+                    }
+                    .bold()
+                    .foregroundStyle(.blue)
+    
+                    // List the Character data
+                    ForEach(generateCharacterList(characters: characterVM.characters, characterURL: episode.characters )) { character in
+                        /*@START_MENU_TOKEN@*/Text(character.name)/*@END_MENU_TOKEN@*/
+                        Text(character.gender)
+                        Text(character.species)
+                        Text(character.type)
+                        Text(character.status)
+                        Text(character.location.name)
                     }
                 }
-                .frame(width: 600)
-                    
-                List(generateCharacterList(characters: characterVM.characters, characterURL: episode.characters )) { character in
-                    HStack {
-                        Grid(horizontalSpacing: 30, verticalSpacing: 10) {
-                            GridRow(alignment: .firstTextBaseline) {
-                                Text(character.name)
-                                    .gridCellColumns(3)
-                                Text(character.gender)
-                                Text(character.status)
-                            }
-                        }
-                        .font(.default)
-                    }
-                }
-                
-//                List(character.episode, id: \.self) { episode in
-//                    Text(episode.description)
-//                }
-                
             }
-            .frame(width: 600)
-            Spacer()
+            .padding()
+            Text("There are: \(episode.characters.count) characters in this location.")
         }
-        Spacer()
     }
     func generateCharacterList(characters: [RMCharacter], characterURL: [String]) -> [RMCharacter] {
         // Extract the Character id and place in an array

@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationDetailView: View {
     @Environment(CharacterVM.self) var characterVM
     let location: Location
+    
     var body: some View {
         VStack {
             Text(location.name)
@@ -27,58 +28,58 @@ struct LocationDetailView: View {
                         .bold()
                     Text(location.dimension)
                 }
-                GridRow(alignment: .firstTextBaseline) {
-                    Text("Residents:")
-                        .bold()
-                    Text("\(location.residents.count)")
-                }
+                //                GridRow(alignment: .firstTextBaseline) {
+                //                    Text("Residents:")
+                //                        .bold()
+                //                    Text("\(location.residents.count)")
+                //                }
             }
             .font(.title2)
             .frame(width: 500)
             
-            VStack {
-
-                Grid(alignment: .leading) {
-                    GridRow(alignment: .firstTextBaseline) {
-                        Spacer()
+            ScrollView {
+                LazyVGrid(
+                    columns: [
+//                        GridItem(.fixed(600)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                        GridItem(.flexible(minimum: 50, maximum: .infinity))
+                    ],
+                    alignment: .leading,
+                    spacing: 10
+                ) {
+                    // Column Headers
+                    Group {
                         Text("Character:")
-                            .bold()
-                        Divider()
                         Text("Gender:")
-                            .bold()
-                        Divider()
+                        Text("Species:")
+                        Text("Type:")
                         Text("Status:")
-                            .bold()
-                        Spacer()
+                        Text("Origin:")
+                    }
+                    .bold()
+                    .foregroundStyle(.blue)
+    
+                    // List the Character data
+                    ForEach(generateCharacterList(characters: characterVM.characters, characterURL: location.residents )) { character in
+                        /*@START_MENU_TOKEN@*/Text(character.name)/*@END_MENU_TOKEN@*/
+                        Text(character.gender)
+                        Text(character.species)
+                        Text(character.type)
+                        Text(character.status)
+                        Text(character.origin.name)
                     }
                 }
-                    
-                List(generateCharacterList(characters: characterVM.characters, characterURL: location.residents )) { character in
-                    HStack {
-                        Grid(alignment: .leading) {
-                            GridRow(alignment: .firstTextBaseline) {
-                                Text(character.name)
-                                Divider()
-                                Text(character.gender)
-                                Divider()
-                                Text(character.status)
-                                Spacer()
-                            }
-                        }
-                        .font(.default)
-                    }
-                }
-                
-//                List(character.episode, id: \.self) { episode in
-//                    Text(episode.description)
-//                }
-                
             }
-            .frame(width: 600)
-            Spacer()
+            .padding()
+            Text("There are: \(location.residents.count) characters in this location.")
         }
-        Spacer()
     }
+    
+    
     // Return a filtered array of Episodes based on the id extracted from the character.episodes array of strings
     func generateCharacterList(characters: [RMCharacter], characterURL: [String]) -> [RMCharacter] {
         // Extract the Character id and place in an array
@@ -88,18 +89,18 @@ struct LocationDetailView: View {
             characterURL.forEach { mySuffix in
                 if let myRange = mySuffix.range(of: "/character/") {
                     let myIndex = mySuffix.index(mySuffix.endIndex, offsetBy: mySuffix.distance(from: mySuffix.endIndex, to: myRange.upperBound))
-                            idList.append(Int(mySuffix.suffix(from: myIndex)) ?? -1)
+                    idList.append(Int(mySuffix.suffix(from: myIndex)) ?? -1)
                 }
             }
         }
-//        print(idList)
+        //        print(idList)
         // Iterate through the idList and build a new array based on matching id
         idList.forEach { id in
             filteredCharacters.append(contentsOf: characters.filter( {$0.id == id} ))
-        //    filteredArray.append(contentsOf: myArray.filter{ $0.contains(String(id))})
+            //    filteredArray.append(contentsOf: myArray.filter{ $0.contains(String(id))})
         }
-//        print(String(filteredEpisodes.count))
-
+        //        print(String(filteredEpisodes.count))
+        
         return filteredCharacters
     }
 }
